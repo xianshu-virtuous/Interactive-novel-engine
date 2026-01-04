@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>互动小说创作工具</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header class="header">
+            <h1>📖 互动小说引擎</h1>
+            <div class="mode-switch">
+                <button id="playModeBtn" class="mode-btn active">🎮 游玩模式</button>
+                <button id="editModeBtn" class="mode-btn">✏️ 编辑模式</button>
+            </div>
+        </header>
+
+        <!-- 游玩模式 -->
+        <div id="playMode" class="mode-container active">
+            <div class="game-layout">
+                <!-- 变量面板 -->
+                <aside class="variables-panel" id="variablesPanel">
+                    <div class="panel-header">
+                        <h3>📊 角色状态</h3>
+                        <button class="collapse-btn" id="collapseBtn">▼</button>
+                    </div>
+                    <div class="panel-content" id="panelContent">
+                        <!-- 生理系统 -->
+                        <div class="var-category">
+                            <h4>💪 生理系统</h4>
+                            <div id="physiologicalVars"></div>
+                        </div>
+                        <!-- 情感系统 -->
+                        <div class="var-category">
+                            <h4>❤️ 情感系统</h4>
+                            <div id="emotionalVars"></div>
+                        </div>
+                        <!-- 难度系统 -->
+                        <div class="var-category">
+                            <h4>⚡ 难度系统</h4>
+                            <div id="difficultyVars"></div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- 游戏主区域 -->
+                <main class="game-main">
+                    <div class="story-display">
+                        <div class="story-text" id="storyText">
+                            <p>欢迎使用互动小说引擎！</p>
+                            <p>请切换到<strong>编辑模式</strong>创建您的故事，或者点击下方按钮加载示例故事。</p>
+                        </div>
+                        <div class="choices" id="choicesContainer"></div>
+                    </div>
+
+                    <!-- 游戏控制栏 -->
+                    <div class="game-controls">
+                        <button class="control-btn" id="saveBtn">💾 保存</button>
+                        <button class="control-btn" id="loadBtn">📂 读档</button>
+                        <button class="control-btn" id="historyBtn">📜 历史</button>
+                        <button class="control-btn" id="restartBtn">🔄 重新开始</button>
+                        <button class="control-btn" id="loadDemoBtn">🎬 加载示例</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- 编辑模式 -->
+        <div id="editMode" class="mode-container">
+            <div class="editor-layout">
+                <!-- 左侧：节点列表 -->
+                <aside class="nodes-sidebar">
+                    <div class="sidebar-header">
+                        <h3>📑 剧情节点</h3>
+                        <button class="add-btn" id="addNodeBtn">+ 新建</button>
+                    </div>
+                    <div class="nodes-list" id="nodesList"></div>
+                </aside>
+
+                <!-- 中间：节点编辑器 -->
+                <main class="node-editor">
+                    <div class="editor-header">
+                        <h3>节点编辑器</h3>
+                        <div class="editor-actions">
+                            <button class="action-btn" id="exportBtn">📤 导出</button>
+                            <button class="action-btn" id="importBtn">📥 导入</button>
+                            <input type="file" id="importFile" accept=".json" style="display:none">
+                        </div>
+                    </div>
+                    <div id="editorContent" class="editor-content">
+                        <div class="empty-state">
+                            <p>👈 请从左侧选择或创建一个节点</p>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- 右侧：变量管理 -->
+                <aside class="vars-sidebar">
+                    <div class="sidebar-header">
+                        <h3>🎯 变量管理</h3>
+                    </div>
+                    <div class="vars-config">
+                        <!-- 生理变量 -->
+                        <div class="var-config-section">
+                            <h4>💪 生理系统</h4>
+                            <div id="physiologicalConfig"></div>
+                            <button class="add-var-btn" data-category="physiological">+ 添加</button>
+                        </div>
+                        <!-- 情感变量 -->
+                        <div class="var-config-section">
+                            <h4>❤️ 情感系统</h4>
+                            <div id="emotionalConfig"></div>
+                            <button class="add-var-btn" data-category="emotional">+ 添加</button>
+                        </div>
+                        <!-- 难度变量 -->
+                        <div class="var-config-section">
+                            <h4>⚡ 难度系统</h4>
+                            <div id="difficultyConfig"></div>
+                            <button class="add-var-btn" data-category="difficulty">+ 添加</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- 历史记录弹窗 -->
+        <div id="historyModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📜 剧情历史</h3>
+                    <button class="close-btn" id="closeHistoryBtn">×</button>
+                </div>
+                <div class="modal-body" id="historyContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/engine.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
